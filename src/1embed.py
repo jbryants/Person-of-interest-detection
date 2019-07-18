@@ -25,7 +25,6 @@ print('Loaded Model')
 
 # load the faces array from the .npz files.
 items = os.listdir("/home/jbryants/project/0facenet/V/testVidArrays/.")
-#print(items)
 
 npzList = []
 for item_name in items:
