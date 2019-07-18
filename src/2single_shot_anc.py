@@ -21,8 +21,6 @@ def extract_face(image, required_size=(160, 160)):
     results = detector.detect_faces(pixels)
     # if no faces were detected.
     if not results:
-        print(len(results))
-        print(results)
         pass
     # if one or more faces were detected.
     elif len(results) >= 1:
@@ -41,8 +39,6 @@ def extract_face(image, required_size=(160, 160)):
             image = Image.fromarray(face)
             image = image.resize(required_size)
             face_array = asarray(image)
-            #pyplot.imshow(face_array)
-            #pyplot.show() 
             return face_array
 
 # get the face embedding for one face
@@ -61,7 +57,6 @@ def get_embedding(model, face_pixels):
 
 def euclidean_distance(anchor_emb, row_emb):
     dist = np.sqrt(np.sum(np.square(np.subtract(anchor_emb, row_emb))))
-    #print(emb[0]['name'])
     if dist < 10.1:
         #print('  %1.4f  ' % dist, end='')
         #print("\n")
@@ -74,8 +69,6 @@ img = Image.open('/home/jbryants/project/0facenet/V/anchor_ss/%s.jpg'%(anc))
 
 # extract anchor face
 face = extract_face(img)
-
-#print(face)
 print(face.shape)
 
 # load the facenet model
@@ -88,7 +81,6 @@ print(anc_embedding.shape)
 
 # load the faces embeddings array from the .npz files.
 items = listdir("/home/jbryants/project/0facenet/V/testVidArrays-Embeddings/.")
-#print(items)
 
 npzList = []
 for item_name in items:
