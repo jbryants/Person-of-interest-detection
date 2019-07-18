@@ -91,13 +91,12 @@ print(npzList)
 
 # Creating a dictionary to store the faces embeddings array
 arrDict = {}
-
 for npz in npzList:
     data = np.load('/home/jbryants/project/0facenet/V/testVidArrays-Embeddings/%s'%npz)
     arrDict[npz] = data['arr_0']
 
+# Selecting the matching faces with the anchor based on euclidean distance measure.
 sel = []
-
 for k, v in arrDict.items():
     flag = False
     for row in v:
@@ -105,6 +104,9 @@ for k, v in arrDict.items():
         if flag == True:
             sel.append(k)
 
+# Reading the csv file where 
+# the NpzFile test data file name to corresponding video file name 
+# mapping is present.
 data = pd.read_csv('fname_dict.csv')
 
 # Showing the list of all videos in which we are looking for the person of interest.
@@ -117,3 +119,4 @@ for row in range(data.shape[0]):
     for col in range(data.shape[1]):
         if data.iloc[row][col] in sel:
             print(data.iloc[row][(col + 1)])
+            
