@@ -28,8 +28,6 @@ def extract_face(cnt, image, required_size=(160, 160)):
     elif len(results) >= 1:
         for result in results:
             if result['confidence'] >= 0.95:
-                #print(result)
-                #print(result['confidence'])
                 # extract the bounding box from the first face
                 x1, y1, width, height = result['box']
                 # bug fix
